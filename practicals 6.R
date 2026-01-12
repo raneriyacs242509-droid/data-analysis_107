@@ -3,9 +3,7 @@
 # Clear workspace
 rm(list = ls())
 
-# ----------------
-# PART 1: MERGE() – Combine datasets by a key
-# ----------------
+
 
 # Create first dataset
 data1 <- data.frame(
@@ -47,9 +45,6 @@ full_join <- merge(data1, data2, by = "ID", all = TRUE)
 print("Full Outer Join:")
 print(full_join)
 
-# ----------------
-# PART 2: BIND_ROWS() – Append datasets row-wise
-# ----------------
 
 # Load dplyr
 library(dplyr)
@@ -71,9 +66,6 @@ appended_data <- bind_rows(df1, df2)
 print("Appended Data (Same Columns):")
 print(appended_data)
 
-# ----------------
-# PART 3: bind_rows() with different columns
-# ----------------
 
 df3 <- data.frame(
   ID = c(6, 7),
@@ -85,5 +77,6 @@ df3 <- data.frame(
 appended_data2 <- bind_rows(df1, df3)
 print("Appended Data (Different Columns):")
 print(appended_data2)
+
 
 

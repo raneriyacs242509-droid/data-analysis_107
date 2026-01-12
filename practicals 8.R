@@ -20,19 +20,13 @@ print("Original Dataset:")
 print(data)
 View(data)
 
-# -----------------------------------------
-# Step 2: Handle missing values using na.omit()
-# -----------------------------------------
-# This will remove all rows that contain any NA
+
+
 cleaned_naomit <- na.omit(data)
 print("After na.omit():")
 print(cleaned_naomit)
 
-# -----------------------------------------
-# Step 3: Handle missing values using replace_na()
-# -----------------------------------------
-# Replace NA with specific values
-# Replace numeric NAs with 0, character NAs with "Unknown"
+
 cleaned_replace <- data %>%
   replace_na(list(
     Name = "Unknown",
@@ -45,8 +39,7 @@ cleaned_replace <- data %>%
 print("After replace_na():")
 print(cleaned_replace)
 
-# -----------------------------------------
-# Step 4: Verify that missing values are handled
-# -----------------------------------------
+
 print("Check for remaining NAs:")
 print(colSums(is.na(cleaned_replace)))
+

@@ -53,3 +53,4 @@ print(chi_result)
 
 # Expected frequencies
 chi_result$expected
+

@@ -28,3 +28,4 @@ long_data <- data.frame(
 )
 
 t.test(Score ~ Time, data = long_data, paired = TRUE)
+

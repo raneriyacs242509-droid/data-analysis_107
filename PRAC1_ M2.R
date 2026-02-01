@@ -13,3 +13,4 @@ air_numeric <- air %>% select(where(is.numeric))
 summary(air_numeric)
 
 describe(air_numeric)
+

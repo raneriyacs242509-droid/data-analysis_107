@@ -32,3 +32,4 @@ plot(
 )
 
 abline(model, col = "blue", lwd = 2)
+

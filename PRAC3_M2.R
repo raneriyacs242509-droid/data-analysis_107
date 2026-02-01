@@ -16,4 +16,5 @@ overall_percent <- prop.table(cross_tab) * 100
 overall_percent
 
 cross_tab_na <- table(data$Column1, data$Column2, useNA = "ifany")
+
 cross_tab_na

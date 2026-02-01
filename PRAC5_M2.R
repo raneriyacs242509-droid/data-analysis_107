@@ -23,4 +23,5 @@ t.test(Score ~ Group, data = data, var.equal = TRUE)
 group_A <- data$Score[data$Group == "A"]
 group_B <- data$Score[data$Group == "B"]
 
+
 t.test(group_A, group_B)

@@ -1,49 +1,30 @@
-# Clear workspace
-rm(list = ls())
 
-# Load dataset
-df <- read.csv("C:/Users/yukta/Downloads/StudentPerformance (1).csv")
+air <- read.csv("C:/Users/vibro/Downloads/globalAirQuality.csv", stringsAsFactors = FALSE)
 
-# Check structure
-str(df)
 
-# Create binary outcome variable
-df$High_Performance <- ifelse(df$Performance.Index > 75, 1, 0)
+str(air)
 
-# Logistic Regression Model
-model <- glm(High_Performance ~ Sleep.Hours,
-             family = binomial,
-             data = df)
 
-# Model summary
+pm_col <- as.numeric(air[["PM2.5"]])
+
+
+air$HighPollution <- factor(ifelse(pm_col > 35, 1, 0))
+
+model <- glm(HighPollution ~ pm_col,
+             data = air,
+             family = binomial)
+
+
 summary(model)
 
-# Take a subset for plotting (first 20 observations)
-subset_df <- df[1:20, ]
 
-# Scatter plot
-plot(subset_df$Sleep.Hours,
-     subset_df$High_Performance,
-     main = "Logistic Regression: High Performance vs Sleep Hours",
-     xlab = "Sleep Hours",
-     ylab = "Probability of High Performance",
-     col = rgb(0, 0, 0, 0.3),
-     pch = 19)
+plot(pm_col, air$HighPollution,
+     xlab = "PM2.5",
+     ylab = "High Pollution (0/1)",
+     main = "Logistic Regression using glm()",
+     pch = 16)
 
-# Sequence of Sleep Hours for prediction
-x_values <- seq(min(df$Sleep.Hours),
-                max(df$Sleep.Hours),
-                length.out = 100)
-
-# Predicted probabilities
-predicted_probs <- predict(
-  model,
-  newdata = data.frame(Sleep.Hours = x_values),
-  type = "response"
-)
-
-# Logistic regression curve
-lines(x_values,
-      predicted_probs,
-      col = "green",
-      lwd = 3)
+curve(predict(model,
+              data.frame(pm_col = x),
+              type = "response"),
+      add = TRUE)
